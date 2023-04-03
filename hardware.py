@@ -25,4 +25,5 @@ print(data)
 
 pca = PCA(n_components=3)
 pca.fit(data[["MYCT","MMIN","MMAX","CACH","CHMIN","CHMAX","PRP"]])
-# pca.fit(data["MYCT"],data["MMIN"],data["MMAX"],)
+print(pca.explained_variance_ratio_)
+print(pca.singular_values_)
