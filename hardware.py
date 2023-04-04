@@ -21,9 +21,9 @@ column_names = [
 data.set_axis(column_names,axis=1,inplace=True)
 plt.rcParams["figure.figsize"] = [7.00,3.50]
 plt.rcParams["figure.autolayout"] = True
-print(data)
+# print(data)
 
-pca = PCA(n_components=3)
+pca = PCA(n_components=7)
 pca.fit(data[["MYCT","MMIN","MMAX","CACH","CHMIN","CHMAX","PRP"]])
 print(pca.explained_variance_ratio_)
 print(pca.singular_values_)
