@@ -56,9 +56,12 @@ plt.rcParams["figure.autolayout"] = True
 # print(combined_cols)
 
 selected_cols = data[["City-MPG","Highway-MPG","Horsepower"]]
-print(selected_cols.head())
-# for row in selected_cols:
-#     print(row)
+string_data = selected_cols.to_string()
+print(string_data)
+
+# plt.scatter(data["City-MPG"],data["Highway-MPG"],data["Horsepower"])
+plt.scatter(selected_cols[0],selected_cols[2])
+plt.show()
 
 # plt.scatter(combined_cols[0],combined_cols[1],combined_cols[2])
 # plt.scatter(pre_combined_cols[0],pre_combined_cols[])
