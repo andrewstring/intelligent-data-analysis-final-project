@@ -8,35 +8,48 @@ data_file = pd.read_csv("./car-data/imports-85.data")
 data = df(data=data_file)
 column_names = [
     "Symboling",
-    "Normalized-Losses",
+    "NormalizedLosses",
     "Make",
-    "Fuel-Type",
+    "FuelType",
     "Aspiration",
-    "Num-Of-Doors",
-    "Body-Style",
-    "Drive-Wheels",
-    "Engine-Location",
-    "Wheel-Base",
+    "NumOfDoors",
+    "BodyStyle",
+    "DriveWheels",
+    "EngineLocation",
+    "WheelBase",
     "Length",
     "Width",
     "Height",
-    "Curb-Weight",
-    "Engine-Type",
-    "Num-Of-Cylinders",
-    "Engine-Size",
-    "Fuel-System",
+    "CurbWeight",
+    "EngineType",
+    "NumOfCylinders",
+    "EngineSize",
+    "FuelSystem",
     "Bore",
     "Stroke",
-    "Compression-Ratio",
+    "CompressionRatio",
     "Horsepower",
-    "Peak-RPM",
-    "City-MPG",
-    "Highway-MPG",
+    "PeakRPM",
+    "CityMPG",
+    "HighwayMPG",
     "Price"
 ]
 data.set_axis(column_names,axis=1,inplace=True)
+
+# DROP INVALID COLUMNS
+data = data[
+    (data.NormalizedLosses != "?") &
+    (data.NumOfDoors != "?") &
+    (data.Bore != "?") &
+    (data.Stroke != "?") &
+    (data.Horsepower != "?") &
+    (data.PeakRPM != "?") &
+    (data.Price != "?")
+    ]
+
 plt.rcParams["figure.figsize"] = [7.00,3.50]
 plt.rcParams["figure.autolayout"] = True
+print(data.to_string())
 # # print(data)
 
 # pca = PCA(n_components=7)
@@ -55,13 +68,13 @@ plt.rcParams["figure.autolayout"] = True
 
 # print(combined_cols)
 
-selected_cols = data[["City-MPG","Highway-MPG","Horsepower"]]
-string_data = selected_cols.to_string()
-print(string_data)
+# selected_cols = data[["City-MPG","Highway-MPG","Horsepower"]]
+# string_data = selected_cols.to_string()
+# print(string_data)
 
 # plt.scatter(data["City-MPG"],data["Highway-MPG"],data["Horsepower"])
-plt.scatter(selected_cols[0],selected_cols[2])
-plt.show()
+# plt.scatter(selected_cols[0],selected_cols[1])
+# plt.show()
 
 # plt.scatter(combined_cols[0],combined_cols[1],combined_cols[2])
 # plt.scatter(pre_combined_cols[0],pre_combined_cols[])
