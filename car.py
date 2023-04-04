@@ -52,10 +52,5 @@ plt.rcParams["figure.autolayout"] = True
 
 print(data[["CityMPG","HighwayMPG","PeakRPM"]])
 
-
-plt.scatter(data["CityMPG"],data["HighwayMPG"],data["HighwayMPG"].tostring())
+plt.scatter(data["CityMPG"],data["HighwayMPG"],data["DriveWheels"])
 plt.show()
-
-# plt.scatter(combined_cols[0],combined_cols[1],combined_cols[2])
-# plt.scatter(pre_combined_cols[0],pre_combined_cols[])
-# plt.show()
