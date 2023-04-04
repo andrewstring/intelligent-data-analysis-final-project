@@ -46,9 +46,16 @@ plt.rcParams["figure.autolayout"] = True
 city_mpg = data["City-MPG"]
 highway_mpg = data["Highway-MPG"]
 horsepower = data["Horsepower"]
-combined_cols = [city_mpg,highway_mpg,horsepower for amount in horsepower if amount.isdigit()]
-print(combined_cols)
+# combined_cols = [[elem[0],elem[1],elem[2]] for elem in [city_mpg,highway_mpg,horsepower]]
+# combined_cols = [[int(entry[0]),int(entry[1]),int(entry[2])] for entry in np.dstack((city_mpg,highway_mpg,horsepower))]
+pre_combined_cols = np.dstack((city_mpg,highway_mpg,horsepower))
+
+# for entry in combined_cols:
+#     print(entry)
+
+# print(combined_cols)
 
 
-# plt.scatter(combined)
-# plt.show()
+# plt.scatter(combined_cols[0],combined_cols[1],combined_cols[2])
+plt.scatter(pre_combined_cols[0],pre_combined_cols[1])
+plt.show()
