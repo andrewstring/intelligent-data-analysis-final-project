@@ -43,3 +43,12 @@ plt.rcParams["figure.autolayout"] = True
 # pca.fit(data[["MYCT","MMIN","MMAX","CACH","CHMIN","CHMAX","PRP"]])
 # print(pca.explained_variance_ratio_)
 # print(pca.singular_values_)
+city_mpg = data["City-MPG"]
+highway_mpg = data["Highway-MPG"]
+horsepower = data["Horsepower"]
+combined_cols = [city_mpg,highway_mpg,horsepower for amount in horsepower if amount.isdigit()]
+print(combined_cols)
+
+
+# plt.scatter(combined)
+# plt.show()
