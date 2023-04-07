@@ -4,6 +4,7 @@ import pandas as pd
 from pandas import DataFrame as df
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import SpectralClustering
 import os.path
 
 def reorder_data(in_file_path,out_file_path):
@@ -25,6 +26,10 @@ pca.fit(df[["3","4","5","6","7","8","9","10","11","12"]])
 transformed_data = pca.transform(df[["3","4","5","6","7","8","9","10","11","12"]])
 zipped_data = list(zip(*transformed_data))
 # print(transformed_data)
+
+#NOTE: Try different assign labels args
+clustering = SpectralClustering(n_clusters=3,assign_labels="discretize").fit(transformed_data)
+print(clustering)
 
 fig = plt.figure(1,figsize=(5,5))
 plt.clf()
