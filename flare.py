@@ -22,7 +22,15 @@ df = pd.read_csv("./flare-data/newflare.data1",header=None,names=["0","1","2","3
 
 pca = PCA(n_components=2)
 pca.fit(df[["3","4","5","6","7","8","9","10","11","12"]])
+transformed_data = pca.transform(df[["3","4","5","6","7","8","9","10","11","12"]])
+zipped_data = list(zip(*transformed_data))
+# print(transformed_data)
 
+fig = plt.figure(1,figsize=(5,5))
+plt.clf()
 
-# plt.scatter(df["3"],df["4"])
-# plt.show()
+ax = fig.add_subplot()
+ax.scatter(zipped_data[0],zipped_data[1])
+
+# plt.scatter(transformed_data[0],transformed_data[1])
+plt.show()
