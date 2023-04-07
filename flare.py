@@ -6,11 +6,6 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 import os.path
 
-
-
-
-
-
 def reorder_data(in_file_path,out_file_path):
     if not os.path.isfile(out_file_path):
         with open(out_file_path, "w+") as write:
@@ -23,11 +18,11 @@ def reorder_data(in_file_path,out_file_path):
 
 reorder_data("./flare-data/flare.data1","./flare-data/newflare.data1")
 
-df = pd.read_csv("./flare-data/newflare.data1",header=None)
+df = pd.read_csv("./flare-data/newflare.data1",header=None,names=["0","1","2","3","4","5","6","7","8","9","10","11","12"])
 
-print(df.head())
-df.set_axis(["0","1","2","3","4","5","6","7","8","9","10","11","12"],axis=1,inplace=False)
-print(df.head())
+pca = PCA(n_components=2)
+pca.fit(df[["3","4","5","6","7","8","9","10","11","12"]])
 
-plt.plot(df[["3","4"]])
-plt.show()
+
+# plt.scatter(df["3"],df["4"])
+# plt.show()
