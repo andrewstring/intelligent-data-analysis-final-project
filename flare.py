@@ -4,7 +4,7 @@ import pandas as pd
 from pandas import DataFrame as df
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import SpectralClustering
+from sklearn.cluster import SpectralClustering, DBSCAN
 import os.path
 
 def reorder_data(in_file_path,out_file_path):
@@ -24,18 +24,28 @@ df = pd.read_csv("./flare-data/newflare.data1",header=None,names=["0","1","2","3
 pca = PCA(n_components=2)
 pca.fit(df[["3","4","5","6","7","8","9","10","11","12"]])
 transformed_data = pca.transform(df[["3","4","5","6","7","8","9","10","11","12"]])
-zipped_data = list(zip(*transformed_data))
+
 # print(transformed_data)
 
 #NOTE: Try different assign labels args
-clustering = SpectralClustering(n_clusters=3,assign_labels="discretize").fit(transformed_data)
-print(clustering)
+# clustering = SpectralClustering(n_clusters=3,assign_labels="cluster_qr").fit(transformed_data)
+clustering = DBSCAN(min_samples=3).fit(transformed_data)
+zipped_data = list(zip(*transformed_data))
+zipped_data.append(clustering.labels_)
+# zipped_data_w_labels = list(zip(zipped_data,clustering.labels_))
+# print(clustering)
+# print(clustering.labels_)
+# for entry in zipped_data_w_labels:
+#     print(entry)
+print(len(zipped_data[0]))
+print(len(zipped_data[1]))
+print(len(zipped_data[2]))
 
 fig = plt.figure(1,figsize=(5,5))
 plt.clf()
 
 ax = fig.add_subplot()
-ax.scatter(zipped_data[0],zipped_data[1])
+ax.scatter(zipped_data[0],zipped_data[1], c=zipped_data[2])
 
 # plt.scatter(transformed_data[0],transformed_data[1])
 plt.show()
