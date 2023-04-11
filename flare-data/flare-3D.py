@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 import numpy as np
 import pandas as pd
 from pandas import DataFrame as df
@@ -48,7 +49,7 @@ fig = plt.figure(1,figsize=(5,5))
 plt.clf()
 
 ax = fig.add_subplot(projection="3d")
-ax.scatter(zipped_data[0],zipped_data[1],zipped_data[2],c=zipped_data[3])
+ax.scatter(zipped_data[0],zipped_data[1],zipped_data[2],c=zipped_data[3],cmap="viridis_r")
 
 # plt.scatter(transformed_data[0],transformed_data[1])
 plt.show()
