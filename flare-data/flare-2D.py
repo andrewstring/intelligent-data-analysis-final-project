@@ -25,7 +25,9 @@ df = pd.read_csv("./newflare.data1",header=None,names=["0","1","2","3","4","5","
 pca = PCA(n_components=2)
 pca.fit(df[["3","4","5","6","7","8","9","10","11","12"]])
 transformed_data = pca.transform(df[["3","4","5","6","7","8","9","10","11","12"]])
-print(f"PCA Eigenvalues {pca.components_}")
+print(f"PCA Eigenvalues:\n{pca.components_}")
+print(f"Explained Variance:\n{pca.explained_variance_}")
+print(f"Singular Values:\n{pca.singular_values_}")
 
 # print(transformed_data)
 
@@ -51,5 +53,4 @@ plt.clf()
 ax = fig.add_subplot()
 ax.scatter(zipped_data[0],zipped_data[1], c=zipped_data[2])
 
-# plt.scatter(transformed_data[0],transformed_data[1])
-plt.show()
+# plt.show()
