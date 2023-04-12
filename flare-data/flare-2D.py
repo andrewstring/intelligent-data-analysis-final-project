@@ -53,4 +53,4 @@ plt.clf()
 ax = fig.add_subplot()
 ax.scatter(zipped_data[0],zipped_data[1], c=zipped_data[2])
 
-# plt.show()
+plt.show()
