@@ -22,11 +22,14 @@ def reorder_data(in_file_path,out_file_path):
 reorder_data("./flare.data1","./newflare.data1")
 
 df = pd.read_csv("./newflare.data1",header=None,names=["0","1","2","3","4","5","6","7","8","9","10","11","12"])
+scaler = StandardScaler().set_output(transform="pandas")
+
+df = scaler.fit_transform(df[["3","4","5","6","7","8","9","10","11","12"]])
 
 
 pca = PCA(n_components=3)
-pca.fit(df[["3","4","5","6","7","8","9","10","11","12"]])
-transformed_data = pca.transform(df[["3","4","5","6","7","8","9","10","11","12"]])
+pca.fit(df)
+transformed_data = pca.transform(df)
 
 # print(transformed_data)
 

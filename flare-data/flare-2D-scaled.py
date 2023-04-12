@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import matplotlib.cm as cm
 import numpy as np
 import pandas as pd
 from pandas import DataFrame as df
@@ -22,17 +21,19 @@ def reorder_data(in_file_path,out_file_path):
 reorder_data("./flare.data1","./newflare.data1")
 
 df = pd.read_csv("./newflare.data1",header=None,names=["0","1","2","3","4","5","6","7","8","9","10","11","12"])
+scaler = StandardScaler().set_output(transform="pandas")
 
+df = scaler.fit_transform(df[["3","4","5","6","7","8","9","10","11","12"]])
 
-pca = PCA(n_components=3)
-pca.fit(df[["3","4","5","6","7","8","9","10","11","12"]])
-transformed_data = pca.transform(df[["3","4","5","6","7","8","9","10","11","12"]])
+pca = PCA(n_components=2)
+pca.fit(df)
+transformed_data = pca.transform(df)
 
 # print(transformed_data)
 
 #NOTE: Try different assign labels args
-clustering = SpectralClustering(n_clusters=3,assign_labels="cluster_qr").fit(transformed_data)
-# clustering = DBSCAN(min_samples=3).fit(transformed_data)
+# clustering = SpectralClustering(n_clusters=3,assign_labels="cluster_qr").fit(transformed_data)
+clustering = DBSCAN(min_samples=3).fit(transformed_data)
 # clustering = GaussianMixture(n_components=3).fit(transformed_data)
 zipped_data = list(zip(*transformed_data))
 zipped_data.append(clustering.labels_)
@@ -49,8 +50,8 @@ print(len(zipped_data[2]))
 fig = plt.figure(1,figsize=(5,5))
 plt.clf()
 
-ax = fig.add_subplot(projection="3d")
-ax.scatter(zipped_data[0],zipped_data[1],zipped_data[2],c=zipped_data[3],cmap="viridis_r")
+ax = fig.add_subplot()
+ax.scatter(zipped_data[0],zipped_data[1], c=zipped_data[2])
 
 # plt.scatter(transformed_data[0],transformed_data[1])
 plt.show()
