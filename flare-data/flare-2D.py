@@ -25,6 +25,7 @@ df = pd.read_csv("./newflare.data1",header=None,names=["0","1","2","3","4","5","
 pca = PCA(n_components=2)
 pca.fit(df[["3","4","5","6","7","8","9","10","11","12"]])
 transformed_data = pca.transform(df[["3","4","5","6","7","8","9","10","11","12"]])
+print(f"PCA Eigenvalues {pca.components_}")
 
 # print(transformed_data)
 
