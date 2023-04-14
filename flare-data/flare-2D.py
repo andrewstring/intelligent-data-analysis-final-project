@@ -47,17 +47,9 @@ print(f"Explained Variance:\n{pca.explained_variance_}")
 print(f"Singular Values:\n{pca.singular_values_}")
 
 #NOTE: Try different assign labels args
-# clustering = SpectralClustering(n_clusters=3,assign_labels="cluster_qr").fit(transformed_data)
 clustering = DBSCAN(min_samples=3).fit(transformed_data)
-# clustering = GaussianMixture(n_components=3).fit(transformed_data)
 zipped_data = list(zip(*transformed_data))
 zipped_data.append(clustering.labels_)
-# zipped_data.append(clustering.means_) # FOR GAUSSIAN
-# zipped_data_w_labels = list(zip(zipped_data,clustering.labels_))
-# print(clustering)
-# print(clustering.labels_)
-# for entry in zipped_data_w_labels:
-#     print(entry)
 
 fig = plt.figure(1,figsize=(5,5))
 plt.clf()
