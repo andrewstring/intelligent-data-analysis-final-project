@@ -46,8 +46,6 @@ print(f"PCA Eigenvalues:\n{pca.components_}")
 print(f"Explained Variance:\n{pca.explained_variance_}")
 print(f"Singular Values:\n{pca.singular_values_}")
 
-# print(transformed_data)
-
 #NOTE: Try different assign labels args
 # clustering = SpectralClustering(n_clusters=3,assign_labels="cluster_qr").fit(transformed_data)
 clustering = DBSCAN(min_samples=3).fit(transformed_data)
@@ -60,9 +58,6 @@ zipped_data.append(clustering.labels_)
 # print(clustering.labels_)
 # for entry in zipped_data_w_labels:
 #     print(entry)
-print(len(zipped_data[0]))
-print(len(zipped_data[1]))
-print(len(zipped_data[2]))
 
 fig = plt.figure(1,figsize=(5,5))
 plt.clf()
