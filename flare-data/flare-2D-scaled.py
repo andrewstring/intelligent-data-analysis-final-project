@@ -17,19 +17,32 @@ def reorder_data(in_file_path,out_file_path):
                     if not line[0] == "*":
                         write.write(line.replace(" ",","))
 
+def get_choice():
+    choice = 0
+    while not (choice == "1" or choice == "2"):
+        choice = input("Enter 1 or 2 to run dataset 1 or dataset 2: ")
+    choice = int(choice)
+    return choice
 
 reorder_data("./flare.data1","./newflare.data1")
+reorder_data("./flare.data2","./newflare.data2")
 
-df = pd.read_csv("./newflare.data1",header=None,names=["0","1","2","3","4","5","6","7","8","9","10","11","12"])
+choice = get_choice()
+
 scaler = StandardScaler().set_output(transform="pandas")
-
-df = scaler.fit_transform(df[["3","4","5","6","7","8","9","10","11","12"]])
-
 pca = PCA(n_components=2)
-pca.fit(df)
-transformed_data = pca.transform(df)
 
-# print(transformed_data)
+if choice == 1:
+    df = pd.read_csv("./newflare.data1",header=None,names=["0","1","2","3","4","5","6","7","8","9","10","11","12"])
+    df = scaler.fit_transform(df[["3","4","5","6","7","8","9","10","11","12"]])
+    pca.fit(df)
+    transformed_data = pca.transform(df)
+
+elif choice == 2:
+    df2 = pd.read_csv("./newflare.data2",header=None,names=["0","1","2","3","4","5","6","7","8","9","10","11","12"])
+    df2 = scaler.fit_transform(df2[["3","4","5","6","7","8","9","10","11","12"]])
+    pca.fit(df2)
+    transformed_data = pca.transform(df2)
 
 #NOTE: Try different assign labels args
 # clustering = SpectralClustering(n_clusters=3,assign_labels="cluster_qr").fit(transformed_data)

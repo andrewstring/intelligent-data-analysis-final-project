@@ -19,8 +19,10 @@ def reorder_data(in_file_path,out_file_path):
 
 
 reorder_data("./flare.data1","./newflare.data1")
+reorder_data("./flare.data2","./newflare.data2")
 
 df = pd.read_csv("./newflare.data1",header=None,names=["0","1","2","3","4","5","6","7","8","9","10","11","12"])
+df2 = pd.read_csv("./newflare.data2",header=None,names=["0","1","2","3","4","5","6","7","8","9","10","11","12"])
 
 pca = PCA(n_components=2)
 pca.fit(df[["3","4","5","6","7","8","9","10","11","12"]])
