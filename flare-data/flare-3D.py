@@ -5,7 +5,7 @@ import pandas as pd
 from pandas import DataFrame as df
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import SpectralClustering, DBSCAN
+from sklearn.cluster import SpectralClustering, DBSCAN, KMeans
 from sklearn.mixture import GaussianMixture
 import os.path
 
